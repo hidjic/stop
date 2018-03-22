@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>test</title>
+	</head>
+	<body>
+		<div id="c1" class="circle"></div>
+		<div id="c2" class="circle"></div>
+		<div id="c3" class="circle"></div>
+		<div id="c4" class="circle"></div>
+		<div id="c5" class="circle"></div>
+		<div id="c6" class="circle"></div>
+		<div id="c7" class="circle"></div>
+		<div id="c8" class="circle"></div>
+		<div id="c9" class="circle"></div>
+		<div id="c10" class="circle"></div>
+	</body>
+	
+	<style>
+		body{
+			border: 1px solid black;
+			background-color: black;
+		}
+		.circle{
+			position: absolute;
+			border-radius: 50px;
+			width: 50px;
+			height: 50px;
+			background-color: red;
+		}
+	</style>
+	
+	<script>
+		var lg = document.body.offsetWidth;
+		var ht = document.body.offsetHeight;
+		var c1 = document.getElementById('c1');
+		var vitX1 = true;
+		var vitY1 = true;
+		var x1 = 0;
+		var y1 = 0;
+		test1 = test2 = test3 = test4 = test5 = test6 = test7 = test8 = test9 = test10 = {vitX : vitX1,vity : vitY1,x : x1,y : y1};
+		setInterval(function(){
+			test1 = ball(c1,1,1,test1);
+			test2 = ball(c2,2,2,test2);
+			test3 = ball(c3,3,3,test3);
+			test4 = ball(c4,4,4,test4);
+			test5 = ball(c5,5,5,test5);
+			test6 = ball(c6,6,6,test6);
+			test7 = ball(c7,7,7,test7);
+			test8 = ball(c8,8,8,test8);
+			test9 = ball(c9,9,9,test9);
+			test10 = ball(c10,10,10,test10);
+		},1);
+		function sens(axe,lg,vit){
+			if(axe>=(lg-50)){return false;}
+			if(axe<=0){return true;}
+			return vit;
+		};
+		function laVitesse(sens,val,vitesse){
+			sens ? val += vitesse : val -= vitesse;
+			return val;
+		};
+		function ball(el,vitx,vity,o){
+			sensX = o.vitX;
+			sensY = o.vitY;
+			x= o.x;
+			y= o.y;
+			sensX = sens(x,lg,sensX);
+			sensY = sens(y,ht,sensY);
+			x = laVitesse(sensX,x,vitx);
+			y = laVitesse(sensY,y,vity);
+			el.style.transform = "translate("+x+"px,"+y+"px)";
+			o1 = {vitX : sensX,vitY : sensY,x : x,y : y};
+			return o1;
+		};
+	</script>
+	
+</html>
